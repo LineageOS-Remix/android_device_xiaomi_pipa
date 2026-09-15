@@ -26,6 +26,8 @@ public class PenUtils {
 
     private static InputManager mInputManager;
 
+    private static final String STYLUS_KEY = "stylus_switch_key";
+
     private static SharedPreferences preferences;
     private static RefreshUtils mRefreshUtils;
 
@@ -40,30 +42,23 @@ public class PenUtils {
     public static void enablePenMode() {
         Log.d(TAG, "enablePenMode: Enable Pen Mode");
         SystemProperties.set("persist.vendor.parts.pen", "18");
-        if (mRefreshUtils != null) {
-            mRefreshUtils.setPenRefreshRate();
-        }
         Log.d(TAG, "enablePenMode: Setting Refresh Rates for Pen");
     }
 
     public static void disablePenMode() {
         Log.d(TAG, "disablePenMode: Disable Pen Mode");
         SystemProperties.set("persist.vendor.parts.pen", "2");
-        if (mRefreshUtils != null) {
-            mRefreshUtils.setDefaultRefreshRate();
-        }
         Log.d(TAG, "disablePenMode: Resetting Refresh Rate Values");
     }
 
     private static void refreshPenMode() {
         for (int id : mInputManager.getInputDeviceIds()) {
-            if (isDeviceXiaomiPen(id)) {
+            if (isDeviceXiaomiPen(id) || preferences.getBoolean(STYLUS_KEY, false)) {
                 if (DEBUG) Log.d(TAG, "refreshPenMode: Found Xiaomi Pen");
                 enablePenMode();
                 return;
             }
         }
-
         if (DEBUG) Log.d(TAG, "refreshPenMode: No Xiaomi Pen found");
         disablePenMode();
     }
