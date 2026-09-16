@@ -31,5 +31,8 @@ BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 # Wi-Fi
 SOONG_CONFIG_XIAOMI_KONA_WIFI_SYMLINK_VERSION := v2
 
+# Inherit the proprietary images
+include vendor/xiaomi/pipa-firmware/BoardConfigVendor.mk
+
 # Inherit from the proprietary version
 include vendor/xiaomi/pipa/BoardConfigVendor.mk
