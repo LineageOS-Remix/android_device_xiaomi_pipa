@@ -29,6 +29,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libpiex_shim
 
+# Camera - MIUI
+include device/xiaomi/camera/miuicamera.mk
+
 # GMS
 WITH_GMS_COMMS_SUITE := false
 
