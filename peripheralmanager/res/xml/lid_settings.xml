@@ -16,12 +16,11 @@
 -->
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="@string/stylus_title">
+    android:title="@string/lid_title">
 
-    <SwitchPreference
+    <SwitchPreferenceCompat
         android:key="lid_switch_key"
         android:defaultValue="true"
         android:title="@string/lid_switch_title"
         android:summary="@string/lid_switch_summary"/>
-
 </PreferenceScreen>
