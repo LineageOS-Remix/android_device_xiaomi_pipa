@@ -6,102 +6,64 @@
 
 package org.lineageos.xiaomiperipheralmanager;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.SystemProperties;
+import android.provider.Settings;
 import android.util.Log;
 
-import android.preference.PreferenceManager;
-import androidx.preference.ListPreference;
 import androidx.preference.Preference;
-import androidx.preference.Preference.OnPreferenceChangeListener;
-import androidx.preference.PreferenceFragment;
-import androidx.preference.SwitchPreference;
-import com.android.settingslib.widget.MainSwitchPreference;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-import android.provider.Settings;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.SwitchPreferenceCompat;
 
 /**
- * Settings fragment for lid configuration
- * Allows users to manually enable/disable the smart cover
+ * Settings fragment for Smart Cover configuration.
+ * Controls the lid_behavior setting which determines how the device
+ * responds when the cover is opened/closed.
  */
-public class LidSettingsFragment extends PreferenceFragment implements
-        SharedPreferences.OnSharedPreferenceChangeListener {
+public class LidSettingsFragment extends PreferenceFragmentCompat implements
+        Preference.OnPreferenceChangeListener {
 
     private static final String TAG = "XiaomiLidSettings";
-    private static final String LID_KEY = "lid_switch_key";
-
-    private SharedPreferences mLidPreference;
+    private static final String LID_SWITCH_KEY = "lid_switch_key";
+    private static final String SETTING_LID_BEHAVIOR = "lid_behavior";
+    private static final int DEFAULT_LID_BEHAVIOR = 1;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        try {
-            addPreferencesFromResource(R.xml.lid_settings);
+        addPreferencesFromResource(R.xml.lid_settings);
 
-            mLidPreference = PreferenceManager.getDefaultSharedPreferences(getContext());
-            SwitchPreference switchPreference = (SwitchPreference) findPreference(LID_KEY);
-
-            if (switchPreference != null) {
-                switchPreference.setChecked(mLidPreference.getBoolean(LID_KEY, false));
-                switchPreference.setEnabled(true);
-            } else {
-                logError("Could not find lid switch preference");
-            }
-            
-            logInfo("Lid settings fragment created");
-        } catch (Exception e) {
-            logError("Error creating lid settings: " + e.getMessage());
+        SwitchPreferenceCompat switchPreference = findPreference(LID_SWITCH_KEY);
+        if (switchPreference != null) {
+            switchPreference.setChecked(getLidBehaviorEnabled());
+            switchPreference.setOnPreferenceChangeListener(this);
         }
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
         try {
-            mLidPreference.registerOnSharedPreferenceChangeListener(this);
+            boolean enabled = (Boolean) newValue;
+            setLidBehaviorEnabled(enabled);
+            Log.d(TAG, "Smart Cover lid behavior set to: " + enabled);
+            return true;
         } catch (Exception e) {
-            logError("Error in onResume: " + e.getMessage());
+            Log.e(TAG, "Failed to set Smart Cover state", e);
+            return false;
         }
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        try {
-            mLidPreference.unregisterOnSharedPreferenceChangeListener(this);
-        } catch (Exception e) {
-            logError("Error in onPause: " + e.getMessage());
-        }
+    private boolean getLidBehaviorEnabled() {
+        return Settings.Global.getInt(
+            requireContext().getContentResolver(),
+            SETTING_LID_BEHAVIOR,
+            DEFAULT_LID_BEHAVIOR
+        ) == 1;
     }
 
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreference, String key) {
-        if (LID_KEY.equals(key)) {
-            try {
-                boolean newStatus = mLidPreference.getBoolean(key, false);
-                logInfo("Lid preference changed to: " + newStatus);
-                Settings.Global.putInt(getActivity().getContentResolver(),
-                                      "lid_behavior", newStatus ? 1 : 0);
-            } catch (Exception e) {
-                logError("Error handling preference change: " + e.getMessage());
-            }
-        }
-    }
-    
-    private void logInfo(String message) {
-        Log.i(TAG, getTimestamp() + message);
-    }
-    
-    private void logError(String message) {
-        Log.e(TAG, getTimestamp() + message);
-    }
-    
-    private String getTimestamp() {
-        return "[" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(new Date()) + "] ";
+    private void setLidBehaviorEnabled(boolean enabled) {
+        Settings.Global.putInt(
+            requireContext().getContentResolver(),
+            SETTING_LID_BEHAVIOR,
+            enabled ? 1 : 0
+        );
     }
 }
