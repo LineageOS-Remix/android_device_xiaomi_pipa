@@ -492,4 +492,10 @@
          Must be in the range specified by minimum and maximum.  -->
     <item name="config_screenBrightnessSettingDefaultFloat" format="float" type="dimen">0.074743524</item>
 
+    <!-- Whether to use the device orientation sensor (TYPE_DEVICE_ORIENTATION) for auto-rotation
+         if available, instead of the accelerometer. Disable on pipa because the proprietary
+         Xiaomi device_orient sensor in ADSP fails to report initial orientation and suffers from
+         severe deadzones on tablets. -->
+    <bool name="config_useDeviceOrientationSensor">false</bool>
+
 </resources>

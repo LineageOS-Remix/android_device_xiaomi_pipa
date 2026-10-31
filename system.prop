@@ -1,2 +1,5 @@
 # Maintainer
 ro.lineage.maintainer=Aryan
+
+# Window Manager
+persist.wm.use_device_orientation_sensor=false
