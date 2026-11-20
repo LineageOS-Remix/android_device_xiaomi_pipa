@@ -46,7 +46,6 @@ ro.vendor.audio.dolby.fade_switch=true
 ro.vendor.audio.dolby.vision.support=true
 
 # Display
-debug.sf.set_idle_timer_ms=1100
 ro.vendor.display.paneltype=2
 vendor.display.enable_hdr10_gpu_target=1
 vendor.display.disable_idle_time_video=1
