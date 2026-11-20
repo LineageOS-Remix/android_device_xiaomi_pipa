@@ -71,5 +71,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     TargetWifiOverlay
 
+# Dolby
+PRODUCT_COPY_FILES := $(filter-out %/dax-default.xml:$(TARGET_COPY_OUT_VENDOR)/etc/dolby/dax-default.xml,$(PRODUCT_COPY_FILES))
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/dolby/dax-default.xml:$(TARGET_COPY_OUT_VENDOR)/etc/dolby/dax-default.xml
+
 # Inherit from vendor blobs
 $(call inherit-product, vendor/xiaomi/pipa/pipa-vendor.mk)
