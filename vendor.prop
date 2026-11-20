@@ -31,6 +31,20 @@ vendor.audio.adm.buffering.ms=6
 vendor.audio.offload.buffer.size.kb=32
 vendor.audio_hal.period_multiplier=3
 
+# Custom Stereo & Rotation
+vendor.audio.feature.custom_stereo.enable=true
+ro.vendor.audio.smartPA.number=4
+ro.vendor.audio.3d.audio.support=true
+ro.vendor.audio.feature.spatial=7
+ro.vendor.audio.multichannel.5point1=true
+ro.vendor.audio.multichannel.5point1.headset=true
+
+# Dolby
+vendor.audio.dolby.control.support=true
+vendor.audio.dolby.control.tunning.by.volume.support=true
+ro.vendor.audio.dolby.fade_switch=true
+ro.vendor.audio.dolby.vision.support=true
+
 # Display
 debug.sf.set_idle_timer_ms=1100
 ro.vendor.display.paneltype=2
