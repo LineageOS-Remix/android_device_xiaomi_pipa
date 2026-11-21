@@ -415,21 +415,21 @@
   </profile>
   <profile id="1" name="Movie" group="default">
     <data>
-      <mi-dv-leveler-steering-enable value="false"/>
-      <mi-ieq-steering-enable value="false"/>
-      <mi-surround-compressor-steering-enable value="false"/>
-      <mi-adaptive-virtualizer-steering-enable value="false"/>
+      <mi-dv-leveler-steering-enable value="true"/>
+      <mi-ieq-steering-enable value="true"/>
+      <mi-surround-compressor-steering-enable value="true"/>
+      <mi-adaptive-virtualizer-steering-enable value="true"/>
       <volume-modeler-enable value="false"/>
       <drc-metadata/>
       <reverb-suppression-enable value="false"/>
       <reverb-suppression-amount value="9"/>
       <endpoint_type id="speaker">
-        <ieq-enable value="false"/>
+        <ieq-enable value="true"/>
         <ieq-amount value="10"/>
         <include preset="ieq_balanced"/>
         <calibration-boost value="32"/>
         <dialog-enhancer-enable value="true"/>
-        <dialog-enhancer-amount value="6"/>
+        <dialog-enhancer-amount value="3"/>
         <dialog-enhancer-ducking value="0"/>
         <mi-virtualizer-binaural-steering-enable value="false"/>
         <peak-value value="256"/>
@@ -449,7 +449,7 @@
         <hearing-protection-rms-attenuation-target value="-256"/>
         <hearing-protection-attenuation-attack-time value="900"/>
         <hearing-protection-attenuation-release-time value="1600"/>
-        <virtualizer-start-band value="2"/>
+        <virtualizer-start-band value="19"/>
         <headphone-virtualizer-steerer-source-distance value="4"/>
       </endpoint_type>
       <endpoint_type id="headphone">
@@ -514,10 +514,10 @@
   </profile>
   <profile id="2" name="Music" group="default">
     <data>
-      <mi-dv-leveler-steering-enable value="false"/>
-      <mi-ieq-steering-enable value="false"/>
-      <mi-surround-compressor-steering-enable value="false"/>
-      <mi-adaptive-virtualizer-steering-enable value="false"/>
+      <mi-dv-leveler-steering-enable value="true"/>
+      <mi-ieq-steering-enable value="true"/>
+      <mi-surround-compressor-steering-enable value="true"/>
+      <mi-adaptive-virtualizer-steering-enable value="true"/>
       <volume-modeler-enable value="false"/>
       <drc-metadata/>
       <reverb-suppression-enable value="false"/>
@@ -528,7 +528,7 @@
         <include preset="ieq_balanced"/>
         <calibration-boost value="32"/>
         <dialog-enhancer-enable value="false"/>
-        <dialog-enhancer-amount value="6"/>
+        <dialog-enhancer-amount value="3"/>
         <dialog-enhancer-ducking value="0"/>
         <mi-virtualizer-binaural-steering-enable value="false"/>
         <peak-value value="256"/>
@@ -548,7 +548,7 @@
         <hearing-protection-rms-attenuation-target value="-256"/>
         <hearing-protection-attenuation-attack-time value="900"/>
         <hearing-protection-attenuation-release-time value="1600"/>
-        <virtualizer-start-band value="0"/>
+        <virtualizer-start-band value="19"/>
         <headphone-virtualizer-steerer-source-distance value="4"/>
       </endpoint_type>
       <endpoint_type id="headphone">
@@ -613,21 +613,21 @@
   </profile>
   <profile id="3" name="Custom" group="default">
     <data>
-      <mi-dv-leveler-steering-enable value="false"/>
-      <mi-ieq-steering-enable value="false"/>
-      <mi-surround-compressor-steering-enable value="false"/>
-      <mi-adaptive-virtualizer-steering-enable value="false"/>
+      <mi-dv-leveler-steering-enable value="true"/>
+      <mi-ieq-steering-enable value="true"/>
+      <mi-surround-compressor-steering-enable value="true"/>
+      <mi-adaptive-virtualizer-steering-enable value="true"/>
       <volume-modeler-enable value="false"/>
       <drc-metadata/>
       <reverb-suppression-enable value="false"/>
       <reverb-suppression-amount value="9"/>
       <endpoint_type id="speaker">
-        <ieq-enable value="false"/>
+        <ieq-enable value="true"/>
         <ieq-amount value="6"/>
-        <include preset="ieq_warm"/>
+        <include preset="ieq_balanced"/>
         <calibration-boost value="32"/>
         <dialog-enhancer-enable value="false"/>
-        <dialog-enhancer-amount value="6"/>
+        <dialog-enhancer-amount value="3"/>
         <dialog-enhancer-ducking value="0"/>
         <mi-virtualizer-binaural-steering-enable value="false"/>
         <peak-value value="256"/>
@@ -647,7 +647,7 @@
         <hearing-protection-rms-attenuation-target value="-256"/>
         <hearing-protection-attenuation-attack-time value="900"/>
         <hearing-protection-attenuation-release-time value="1600"/>
-        <virtualizer-start-band value="0"/>
+        <virtualizer-start-band value="19"/>
         <headphone-virtualizer-steerer-source-distance value="4"/>
       </endpoint_type>
       <endpoint_type id="headphone">
@@ -1108,10 +1108,10 @@
   </profile>
   <profile id="8" name="Voice" group="default">
     <data>
-      <mi-dv-leveler-steering-enable value="false"/>
-      <mi-ieq-steering-enable value="false"/>
-      <mi-surround-compressor-steering-enable value="false"/>
-      <mi-adaptive-virtualizer-steering-enable value="false"/>
+      <mi-dv-leveler-steering-enable value="true"/>
+      <mi-ieq-steering-enable value="true"/>
+      <mi-surround-compressor-steering-enable value="true"/>
+      <mi-adaptive-virtualizer-steering-enable value="true"/>
       <volume-modeler-enable value="false"/>
       <drc-metadata/>
       <reverb-suppression-enable value="false"/>
@@ -1122,10 +1122,10 @@
         <include preset="ieq_detailed"/>
         <calibration-boost value="32"/>
         <dialog-enhancer-enable value="true"/>
-        <dialog-enhancer-amount value="6"/>
+        <dialog-enhancer-amount value="3"/>
         <dialog-enhancer-ducking value="0"/>
         <mi-virtualizer-binaural-steering-enable value="false"/>
-        <peak-value value="240"/>
+        <peak-value value="256"/>
         <surround-decoder-enable value="true"/>
         <surround-boost value="48"/>
         <volmax-boost value="64"/>
