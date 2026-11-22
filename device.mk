@@ -63,18 +63,19 @@ $(call soong_config_set_bool,recovery,target_recovery_uses_qti_drm,true)
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
 
-# WiFi
+# Packages
+PRODUCT_PACKAGES += \
+    TargetWifiOverlay
+
+# Inherit from vendor blobs
+$(call inherit-product, vendor/xiaomi/pipa/pipa-vendor.mk)
+
+# Target-specific WiFi configuration override
 PRODUCT_COPY_FILES := $(filter-out %/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini,$(PRODUCT_COPY_FILES))
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
 
-PRODUCT_PACKAGES += \
-    TargetWifiOverlay
-
-# Dolby
+# Target-specific Dolby configuration override
 PRODUCT_COPY_FILES := $(filter-out %/dax-default.xml:$(TARGET_COPY_OUT_VENDOR)/etc/dolby/dax-default.xml,$(PRODUCT_COPY_FILES))
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/dolby/dax-default.xml:$(TARGET_COPY_OUT_VENDOR)/etc/dolby/dax-default.xml
-
-# Inherit from vendor blobs
-$(call inherit-product, vendor/xiaomi/pipa/pipa-vendor.mk)
